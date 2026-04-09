@@ -72,29 +72,29 @@ Dự án tập trung vào 5 thuật toán chính để giải quyết bài toán
 
 ---
 
-## 6. Giao diện dự kiến (Mockup)
+## 6. Giao diện dự kiến (Mockup & Wireframe)
 
-Bản thiết kế giao diện (Pygame) đề xuất cho dự án:
+Bản thiết kế giao diện (Pygame) đề xuất cho dự án với phong cách hiện đại (Glassmorphism):
+
 ![Mockup giao diện](assets/mockup.png)
-_Hình ảnh minh họa: Bàn cờ 3x3 bên trái, bảng điều khiển và thống kê hiệu năng bên phải._
+_Hình 1: Mockup giao diện hoàn chỉnh với hiệu ứng Neon và bảng điều khiển._
+
+![Wireframe UI](assets/wireframe-ui.png)
+_Hình 2: Khung xương (Wireframe) bố trí các thành phần chức năng._
 
 ---
 
 ## 7. Phân công công việc (Task Assignment)
 
-Dự án được chia đều cho 5 thành viên với các trách nhiệm cụ thể:
+Dự án được chia đều cho 5 thành viên với các trách nhiệm cụ thể dựa trên bản thiết kế:
 
-| STT | Thành viên       | Thuật toán phụ trách           | Nhiệm vụ bổ trợ (Làm chung UI)                                                             |
-| :-- | :--------------- | :----------------------------- | :----------------------------------------------------------------------------------------- |
-| 1   | **Thành viên A** | **Breadth-First Search (BFS)** | - Khởi tạo khung project (Boilerplate).<br>- Quản lý trạng thái bàn cờ.                    |
-| 2   | **Thành viên B** | **Depth-First Search (DFS)**   | - Xử lý logic di chuyển của các tiles.<br>- Tối ưu bộ nhớ cho tìm kiếm.                    |
-| 3   | **Thành viên C** | **Iterative Deepening DFS**    | - Xử lý hình ảnh (Cắt ảnh, Upload ảnh).<br>- Tích hợp hiệu ứng animation.                  |
-| 4   | **Thành viên D** | **Greedy Best-First Search**   | - Nghiên cứu và cài đặt Heuristic (Hamming).<br>- Thiết kế Dashboard kết quả.              |
-| 5   | **Thành viên E** | **A\* Search**                 | - Nghiên cứu và cài đặt Heuristic (Manhattan).<br>- Module đo lường Benchmark (ms, nodes). |
-
----
-
-**Lưu ý**: Giao diện (Pygame UX/UI) là nhiệm vụ **chung**, tất cả các thành viên cùng tham gia xây dựng và kết nối module thuật toán của mình vào giao diện chính.
+| STT | Thành viên       | Thuật toán phụ trách           | Nhiệm vụ phụ                                                                                 |
+| :-- | :--------------- | :----------------------------- | :------------------------------------------------------------------------------------------- |
+| 1   | **Thành viên 1** | **Breadth-First Search (BFS)** | - Khởi tạo khung project (Boilerplate).<br>- Thiết kế Layout tổng thể (Header, Background).  |
+| 2   | **Thành viên 2** | **Depth-First Search (DFS)**   | - Xử lý logic di chuyển tiles.<br>- Xây dựng hệ thống Undo/Redo (Nút Đi lùi, Đi tới).        |
+| 3   | **Thành viên 3** | **Iterative Deepening DFS**    | - Module xử lý hình ảnh (Nút Chèn ảnh, Cắt ảnh).<br>- Hiệu ứng animation khi di chuyển tile. |
+| 4   | **Thành viên 4** | **Greedy Best-First Search**   | - Cài đặt Heuristic (Hamming).<br>- Thiết kế Panel chọn thuật toán & Hiệu ứng Neon/Glow.     |
+| 5   | **Thành viên 5** | **A\* Search**                 | - Cài đặt Heuristic (Manhattan).<br>- Module thống kê Dashboard (Thời gian giải, Số bước).   |
 
 ---
 
