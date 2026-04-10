@@ -2,7 +2,7 @@
 
 ## 1. Thông tin chung
 
-- **Tên đề tài**: Nghiên cứu Heuristic, ứng dụng và so sánh 5 thuật toán tìm kiếm (BFS, DFS, IDDFS, Greedy Best-First Search, A\* Search) trong việc giải quyết trò chơi ghép hình N ô (N-Puzzle Game). Hiển thị thông số cho mỗi thuật toán tìm kiếm được, xây dựng thêm các tính năng phụ cho phép user chèn ảnh, sử dụng stack để quản lý các bước đi redo/undo.
+- **Tên đề tài**: Nghiên cứu Heuristic và Blind Search, ứng dụng và so sánh 2 thuật toán tìm kiếm (Breadth-First Search, A\* Search) trong việc giải quyết trò chơi ghép hình 8 ô (8-Puzzle Game). Hiển thị thông số cho mỗi thuật toán tìm kiếm được, thêm các tính năng phụ cho phép user chèn ảnh, sử dụng stack để quản lý các bước đi redo/undo.
 - **Nhóm thực hiện**: Nhóm 4 (5 Thành viên)
 - **Hạn chót (Deadline)**: 24/04/2026
 - **Công nghệ sử dụng**:
@@ -15,20 +15,17 @@
 
 ## 2. Mục tiêu đề tài
 
-Nghiên cứu và triển khai các thuật toán tìm kiếm từ cơ bản đến nâng cao để giải quyết bài toán N-Puzzle. So sánh hiệu năng giữa các thuật toán dựa trên các tiêu chí: thời gian thực thi (ms) và số lượng nút (states) đã duyệt. Đồng thời, xây dựng một ứng dụng có giao diện người dùng (UI/UX) mượt mà, hỗ trợ tùy biến hình ảnh.
+Nghiên cứu và triển khai 2 thuật toán tìm kiếm tiêu biểu (BFS và A\*) để giải quyết bài toán 8-Puzzle. So sánh hiệu năng giữa thuật toán tìm kiếm mù và tìm kiếm có tri thức dựa trên các tiêu chí: thời gian thực thi (ms) và số lượng nút (states) đã duyệt. Đồng thời, xây dựng một ứng dụng có giao diện hiện đại, hỗ trợ tùy biến hình ảnh và quản lý lịch sử bước đi (Undo/Redo).
 
 ---
 
 ## 3. Danh sách các thuật toán triển khai
 
-Dự án tập trung vào 5 thuật toán chính để giải quyết bài toán N-Puzzle (ví dụ: 8-Puzzle):
+Dự án tập trung vào việc nghiên cứu và so sánh 2 thuật toán chính:
 
-1.  **Breadth-First Search (BFS)**: Tìm kiếm theo chiều rộng, đảm bảo tìm ra lời giải ngắn nhất nhưng tiêu tốn bộ nhớ.
-2.  **Depth-First Search (DFS)**: Tìm kiếm theo chiều sâu, không đảm bảo tối ưu và dễ rơi vào vòng lặp vô tận nếu không xử lý tốt.
-3.  **Iterative Deepening DFS (IDDFS)**: Kết hợp ưu điểm của BFS và DFS, giới hạn độ sâu để tìm lời giải.
-4.  **Greedy Best-First Search**: Tìm kiếm tham lam dựa trên hàm Heuristic (ước lượng khoảng cách đến đích).
-5.  **A\* Search**: Thuật toán tìm kiếm tối ưu nhất trong bài toán này, sử dụng hàm $f(n) = g(n) + h(n)$.
-    - _Các hàm Heuristic dự kiến_: Manhattan Distance, Hamming Distance (Misplaced Tiles).
+1.  **Breadth-First Search (BFS)**: Đại diện cho nhóm tìm kiếm mù (Blind Search). Thuật toán duyệt qua tất cả các nút ở độ sâu hiện tại trước khi chuyển sang độ sâu tiếp theo, đảm bảo tìm ra lời giải ngắn nhất.
+2.  **A\* Search**: Đại diện cho nhóm tìm kiếm có tri thức (Heuristic Search). Sử dụng hàm mục tiêu $f(n) = g(n) + h(n)$ để định hướng tìm kiếm hiệu quả hơn.
+    - _Các hàm Heuristic dự kiến_: Manhattan Distance, Hamming Distance.
 
 ---
 
@@ -45,12 +42,14 @@ Dự án tập trung vào 5 thuật toán chính để giải quyết bài toán
   7 8 0 (ô trống)
   ```
 
-### 4.2. Xử lý hình ảnh nâng cao
+### 4.2. Xử lý hình ảnh và Tiện ích
 
-- **Hình ảnh mặc định**: Khi mở ứng dụng, hệ thống tải sẵn một hình ảnh mặc định và chia thành 8 mảnh ghép.
 - **Tùy biến hình ảnh**:
-  - Cho phép người dùng tải lên ảnh bất kỳ (.jpg, .png).
-  - Hệ thống tự động tính toán kích thước, cắt và gán hình ảnh vào các ô (tiles) tương ứng.
+  - Cho phép người dùng tải lên ảnh bất kỳ (.jpg, .png) hoặc sử dụng ảnh mặc định.
+  - Hệ thống tự động cắt và gán hình ảnh vào các ô (tiles) 3x3.
+- **Quản lý bước đi (Undo/Redo)**:
+  - Sử dụng cấu trúc dữ liệu **Stack** để lưu trữ lịch sử các trạng thái.
+  - Cho phép người dùng quay lại bước trước đó hoặc đi tới bước đã thực hiện.
 
 ### 4.3. Đo lường và So sánh
 
@@ -88,17 +87,17 @@ _Hình 2: Khung xương (Wireframe) bố trí các thành phần chức năng._
 
 Dự án được chia đều cho 5 thành viên với các trách nhiệm cụ thể dựa trên bản thiết kế:
 
-| STT | Thành viên       | Thuật toán phụ trách           | Nhiệm vụ phụ                                                                                 |
-| :-- | :--------------- | :----------------------------- | :------------------------------------------------------------------------------------------- |
-| 1   | **Thành viên 1** | **Breadth-First Search (BFS)** | - Khởi tạo khung project (Boilerplate).<br>- Thiết kế Layout tổng thể (Header, Background).  |
-| 2   | **Thành viên 2** | **Depth-First Search (DFS)**   | - Xử lý logic di chuyển tiles.<br>- Xây dựng hệ thống Undo/Redo (Nút Đi lùi, Đi tới).        |
-| 3   | **Thành viên 3** | **Iterative Deepening DFS**    | - Module xử lý hình ảnh (Nút Chèn ảnh, Cắt ảnh).<br>- Hiệu ứng animation khi di chuyển tile. |
-| 4   | **Thành viên 4** | **Greedy Best-First Search**   | - Cài đặt Heuristic (Hamming).<br>- Thiết kế Panel chọn thuật toán & Hiệu ứng Neon/Glow.     |
-| 5   | **Thành viên 5** | **A\* Search**                 | - Cài đặt Heuristic (Manhattan).<br>- Module thống kê Dashboard (Thời gian giải, Số bước).   |
+| STT | Thành viên       | Nhiệm vụ chính                      | Công việc chi tiết                                                                      |
+| :-- | :--------------- | :---------------------------------- | :-------------------------------------------------------------------------------------- |
+| 1   | **Thành viên 1** | **Thuật toán BFS**                  | - Khởi tạo khung project.<br>- Cài đặt thuật toán BFS (Blind Search).                   |
+| 2   | **Thành viên 2** | **Quản lý chuyển động & Undo/Redo** | - Xử lý logic di chuyển tiles.<br>- Xây dựng hệ thống Undo/Redo bằng **Stack**.         |
+| 3   | **Thành viên 3** | **Xử lý hình ảnh**                  | - Module chèn ảnh người dùng.<br>- Hiệu ứng animation mượt mà khi di chuyển tile.       |
+| 4   | **Thành viên 4** | **UI/UX Design**                    | - Thiết kế Layout & Panel điều khiển.<br>- Hiệu ứng Neon/Glow cho giao diện.            |
+| 5   | **Thành viên 5** | **Thuật toán A\***                  | - Cài đặt A\* và các hàm Heuristic.<br>- Module Dashboard thống kê & so sánh hiệu năng. |
 
 ---
 
-## 7. Quy trình thực hiện dự án (Rút gọn)
+## 8. Quy trình thực hiện dự án
 
 1.  **Giai đoạn 1 (10/04 - 17/04)**: Hoàn thành logic AI, thuật toán tìm kiếm và xử lý hình ảnh.
 2.  **Giai đoạn 2 (18/04 - 24/04)**: Tích hợp giao diện Pygame, tối ưu hóa hiệu năng, kiểm thử và đóng gói.

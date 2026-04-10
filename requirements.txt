@@ -1,1 +1,2 @@
-pygame
+pygame # Thư viện chính để làm giao diện và game
+Pillow # Thư viện dùng để cắt và xử lý ảnh người dùng chèn vào
