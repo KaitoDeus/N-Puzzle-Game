@@ -39,6 +39,44 @@ Dự án được xây dựng mô phỏng trực quan bằng ngôn ngữ **Pytho
 - **Quản lý trạng thái (State Management)**: Khai báo lớp `PuzzleGame`, ứng dụng cấu trúc _Stack_ để theo dõi hệ thống lịch sử nước đi, hỗ trợ tính năng quay lui (Undo/Redo).
 - **Hệ thống đánh giá khởi tạo**: Áp dụng kiểm tra **Số nghịch thế (Inversions)** nhằm đảm bảo mọi trạng thái bàn cờ được sinh ra ngẫu nhiên đều chắn chắn có lời giải (Solvable).
 
+### Kiến trúc dự án (Architecture Model)
+
+Cấu trúc của dự án được tổ chức theo thiết kế lấy cảm hứng từ MVC (Model - View - Controller), giúp tách biệt rõ ràng việc hiển thị, điều khiển sự kiện và xử lý thuật toán:
+
+```text
++-----------------------+       +-----------------------+       +-----------------------+
+|         VIEW          |       |      CONTROLLER       |       |     MODEL / LOGIC     |
+|  (Pygame Components)  | <---> |   (Main Game Loop)    | <---> | (Game Rules & Solvers)|
+| - ui_system.py        |       | - main.py             |       | - game_logic.py       |
+| - ui_statistics.py    |       |   - State Management  |       | - bfs_solver.py       |
+|                       |       |   - Event Handling    |       | - astar_solver.py     |
++-----------------------+       +-----------------------+       +-----------------------+
+```
+
+Luồng tương tác chi tiết giữa các thành phần cốt lõi:
+
+```text
++-----------------------+       +-----------------------+
+|       Pygame UI       | <---> |     Main Control      |
+|  (Tiles, Modal, Dash) |       |  (Event Dispatcher)   |
++-----------------------+       +-----------------------+
+            |                               |
+            | Update View                   | Manage Data/Flow
+            v                               v
++-----------------------+       +-----------------------+
+|    Image Processor    |       |      Game Engine      |
+| (Pillow Image Cropper)|       |     (PuzzleGame)      |
++-----------------------+       |  - Undo/Redo System   |
+                                +-----------------------+
+                                            |
+                                            | Request Path
+                                            v
+                                +-----------------------+
+                                |       AI Solvers      |
+                                |       (BFS / A*)      |
+                                +-----------------------+
+```
+
 ### Đóng góp mới so với các ứng dụng đã có
 
 So với các chương trình mô phỏng 8-Puzzle truyền thống hoặc terminal CLI đơn giản đã có sẵn trên mạng, dự án của nhóm mang tới những nâng cấp đáng giá:
